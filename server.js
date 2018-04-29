@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const logger = require('morgan');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 1128;
 const app = express();
 const DATA_FILE = path.join(__dirname, './data.json');
 

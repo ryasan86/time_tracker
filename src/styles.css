@@ -1,0 +1,8 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.column {
+  border: rgb(51, 49, 49) 2px solid;
+}

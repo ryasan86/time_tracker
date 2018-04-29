@@ -6,7 +6,7 @@ const App = () => {
   return (
     <div className="wrapper">
       <div />
-      <div>
+      <div className="dashboard">
         <EditableTimerList />
         <ToggleableTimerForm isOpen={true} />
       </div>

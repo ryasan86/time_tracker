@@ -1,0 +1,28 @@
+{
+  "name": "time_tracker",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000t\u0000i\u0000m\u0000e\u0000_\u0000t\u0000r\u0000a\u0000c\u0000k\u0000e\u0000r\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryasan86/time_tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryasan86/time_tracker/issues"
+  },
+  "homepage": "https://github.com/ryasan86/time_tracker#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.17.3",
+    "webpack": "^4.6.0"
+  }
+}

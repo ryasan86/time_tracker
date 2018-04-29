@@ -1,8 +1,38 @@
-.wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+* {
+  font-family: sans-serif;
 }
 
-.column {
-  border: rgb(51, 49, 49) 2px solid;
+input {
+  border-radius: 5px;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.5fr;
+}
+
+/* .content {
+  padding: 10px;
+} */
+
+.form .field {
+  padding: 10px;
+}
+
+.field > label {
+  display: block;
+  font-weight: bold;
+  font-size: 0.8em;
+  margin: 0px 0px 0.25rem 0em; 
+}
+
+.timers {
+  display: grid;
+  grid-gap: 1em;
+}
+
+.card {
+  padding: 10px;
+  border: rgb(199, 197, 197) 1.6px solid;
+  border-radius: 5px;
 }

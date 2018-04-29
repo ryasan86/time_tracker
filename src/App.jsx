@@ -5,12 +5,12 @@ import ToggleableTimerForm from './components/ToggleableTimerForm';
 const App = () => {
   return (
     <div className="wrapper">
-      <div className="column" />
-      <div className="column">
+      <div />
+      <div>
         <EditableTimerList />
         <ToggleableTimerForm isOpen={true} />
       </div>
-      <div className="column" />
+      <div />
     </div>
   );
 };

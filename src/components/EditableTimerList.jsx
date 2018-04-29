@@ -4,7 +4,7 @@ import EditableTimer from './EditableTimer';
 export default class EditableTimerList extends Component {
   render() {
     return (
-      <div id="timers">
+      <div id="timers" className="timers">
         <EditableTimer
           title="Learn React"
           project="Web Stuff"

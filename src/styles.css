@@ -14,6 +14,16 @@ input {
   display: inline-block;
 }
 
+button {
+  height: 2em;
+  background-color: transparent;
+  border-style: solid;
+}
+
+h2 {
+  color: rgba(0, 0, 0, 0.7);
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1.5fr;
@@ -21,6 +31,19 @@ input {
 
 .form .field {
   padding: 0.4rem;
+}
+
+.content {
+  padding: 0.4rem;
+}
+
+.header {
+  font-weight: bold;
+}
+
+.meta {
+  font-size: 0.8em;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .field > label {
@@ -46,6 +69,23 @@ input {
   padding: 10px;
 }
 
+.attached > button {
+  width: 50%;
+}
+
+.toggle-button {
+  width: 5rem;
+  height: 4rem;
+}
+
+.timer-button {
+  width: 100%;
+}
+
+.icon-row {
+  float: right;
+}
+
 .blue {
   color: blue;
   border: blue 1px solid;
@@ -58,17 +98,8 @@ input {
   border-radius: 0 0 0.3rem 0;
 }
 
-button {
-  background-color: transparent;
-  border-style: solid;
-}
-
-.attached > button {
-  width: 50%;
-  height: 2em;
-}
-
-.toggle-button {
-  width: 5rem;
-  height: 4rem;
+.green {
+  color: green;
+  border: green 1px solid;
+  border-radius: 0 0 0.3rem 0.3rem;
 }

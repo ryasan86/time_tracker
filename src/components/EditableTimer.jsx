@@ -6,25 +6,54 @@ export default class EditableTimer extends Component {
   constructor() {
     super();
     this.state = { editFormOpen: false };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleEditClick = this.handleEditClick.bind(this);
+    this.onFormClose = this.onFormClose.bind(this);
   }
-  
+
+  handleSubmit(timer) {
+    this.props.onFormSubmit(timer);
+    this.closeForm();
+  }
+
+  handleEditClick() {
+    this.openForm();
+  }
+
+  onFormClose() {
+    this.closeForm();
+  }
+
+  openForm() {
+    this.setState({ editFormOpen: true });
+  }
+
+  closeForm() {
+    this.setState({ editFormOpen: false });
+  }
+
   render() {
-    if (this.props.editFormOpen) {
+    const { id, title, project, elapsed, runningSince } = this.props;
+
+    if (this.state.editFormOpen) {
       return (
         <TimerForm
-          id={this.props.id}
-          title={this.props.title}
-          project={this.props.project}
+          id={id}
+          title={title}
+          project={project}
+          onFormClose={this.onFormClose}
+          onFormSubmit={this.handleSubmit}
         />
       );
     } else {
       return (
         <Timer
-          id={this.props.id}
-          title={this.props.title}
-          project={this.props.project}
-          elapsed={this.props.elapsed}
-          runningSince={this.props.runningSince}
+          id={id}
+          title={title}
+          project={project}
+          elapsed={elapsed}
+          runningSince={runningSince}
+          onEditClick={this.handleEditClick}
         />
       );
     }

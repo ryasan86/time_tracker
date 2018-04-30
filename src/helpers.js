@@ -1,3 +1,6 @@
+import uuid from 'uuid';
+
+// milliseconds to human time
 export const renderElapsedString = (elapsed, runningSince) => {
   let totalElapsed = elapsed;
   if (runningSince) {
@@ -27,4 +30,16 @@ const pad = (numberString, size) => {
     padded = `0${padded}`;
   }
   return padded;
+};
+
+// create new timer
+export const newTimer = (attrs = {}) => {
+  const timer = {
+    title: attrs.title || 'Timer',
+    project: attrs.project || 'Project',
+    id: uuid.v4(),
+    elapsed: 0
+  };
+
+  return timer;
 };

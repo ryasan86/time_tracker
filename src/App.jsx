@@ -30,6 +30,8 @@ class App extends Component {
     this.handleCreateFormSubmit = this.handleCreateFormSubmit.bind(this);
     this.handleUpdateFormSubmit = this.handleUpdateFormSubmit.bind(this);
     this.handleDeleteTimer = this.handleDeleteTimer.bind(this);
+    this.handleStartClick = this.handleStartClick.bind(this);
+    this.handleStopClick = this.handleStopClick.bind(this);
   }
 
   handleCreateFormSubmit(timer) {
@@ -64,30 +66,55 @@ class App extends Component {
         }
       })
     });
-
-    // const { timers } = this.state;
-    // const timerToEdit = this.findTimer(attr);
-    // const index = timers.indexOf(timerToEdit);
-    // timers[index].title = attr.title;
-    // timers[index].project = attr.project;
-    // this.setState({ timers: timers });
   }
 
   deleteTimer(delAttr) {
     this.setState({
       timers: this.state.timers.filter(t => t.id !== delAttr.id)
     });
-
-    // const { timers } = this.state;
-    // const timerToDelete = this.findTimer(delAttr);
-    // const index = timers.indexOf(timerToDelete);
-    // timers.splice(index, 1);
-    // this.setState({ timers: timers });
   }
 
-  // findTimer(timer) {
-  //   return this.state.timers.find(t => t.id === timer.id);
-  // }
+  handleStartClick(timerId) {
+    this.startTimer(timerId);
+  }
+
+  handleStopClick(timerId) {
+    this.stopTimer(timerId);
+  }
+
+  startTimer(timerId) {
+    const now = Date.now();
+
+    this.setState({
+      timers: this.state.timers.map(timer => {
+        if (timer.id === timerId) {
+          return Object.assign({}, timer, {
+            runningSince: now
+          });
+        } else {
+          return timer;
+        }
+      })
+    });
+  }
+
+  stopTimer(timerId) {
+    const now = Date.now();
+
+    this.setState({
+      timers: this.state.timers.map(timer => {
+        if (timer.id === timerId) {
+          const lastElapsed = now - timer.runningSince;
+          return Object.assign({}, timer, {
+            elapsed: timer.elapsed + lastElapsed,
+            runningSince: null
+          });
+        } else {
+          return timer;
+        }
+      })
+    });
+  }
 
   render() {
     return (
@@ -98,6 +125,8 @@ class App extends Component {
             timers={this.state.timers}
             onFormSubmit={this.handleUpdateFormSubmit}
             onTimerDelete={this.handleDeleteTimer}
+            onStartClick={this.handleStartClick}
+            onStopClick={this.handleStopClick}
           />
           <ToggleableTimerForm
             isOpen={true}

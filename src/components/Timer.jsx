@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { renderElapsedString } from './../helpers';
 
+import TimerActionButton from './TimerActionButton';
+
 export default class Timer extends Component {
   constructor() {
     super();
+    this.handleStartClick = this.handleStartClick.bind(this);
+    this.handleStopClick = this.handleStopClick.bind(this);
   }
 
   componentDidMount() {
@@ -14,8 +18,23 @@ export default class Timer extends Component {
     clearInterval(this.forceUpdateInterval);
   }
 
+  handleStartClick() {
+    this.props.onStartClick(this.props.id);
+  }
+
+  handleStopClick() {
+    this.props.onStopClick(this.props.id);
+  }
+
   render() {
-    const { title, project, elapsed, runningSince,onTimerDelete, onEditClick } = this.props;
+    const {
+      title,
+      project,
+      elapsed,
+      runningSince,
+      onTimerDelete,
+      onEditClick
+    } = this.props;
     const elapsedString = renderElapsedString(elapsed, runningSince);
 
     return (
@@ -31,7 +50,11 @@ export default class Timer extends Component {
             <span onClick={onEditClick}>&#9998;</span>
           </div>
         </div>
-        <button className="timer-button green">Start</button>
+        <TimerActionButton
+          timerIsRunning={!!runningSince}
+          onStartClick={this.handleStartClick}
+          onStopClick={this.handleStopClick}
+        />
       </div>
     );
   }

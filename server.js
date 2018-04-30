@@ -13,6 +13,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, './public')));
 
+app.get('/api/timers', (req, res) => {
+  fs.readFile(DATA_FILE, (err, data) => {
+    res.setHeader('Cache-Control', 'no-cache');
+    res.json(JSON.parse(data));
+  });
+});
+
 app.listen(port, () => {
   console.log(`server is listening on port: ${port}`);
 });

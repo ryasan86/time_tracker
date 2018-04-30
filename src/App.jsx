@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
 import { newTimer } from './helpers.js';
+import { getTimers } from './client';
 
 import EditableTimerList from './components/EditableTimerList';
 import ToggleableTimerForm from './components/ToggleableTimerForm';
@@ -9,22 +10,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      timers: [
-        {
-          title: 'Practice App',
-          project: 'Web Dev Training',
-          id: uuid.v4(),
-          elapsed: 5456099,
-          runningSince: Date.now()
-        },
-        {
-          title: 'Read Cook Book',
-          project: 'Learning to Cook',
-          id: uuid.v4(),
-          elapsed: 1273998,
-          runningSince: Date.now()
-        }
-      ]
+      timers: []
     };
 
     this.handleCreateFormSubmit = this.handleCreateFormSubmit.bind(this);
@@ -32,6 +18,14 @@ class App extends Component {
     this.handleDeleteTimer = this.handleDeleteTimer.bind(this);
     this.handleStartClick = this.handleStartClick.bind(this);
     this.handleStopClick = this.handleStopClick.bind(this);
+  }
+
+  componentDidMount() {
+    getTimers(serverTimers => {
+      this.setState({
+        timers: serverTimers
+      })
+    });
   }
 
   handleCreateFormSubmit(timer) {

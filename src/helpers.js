@@ -1,15 +1,30 @@
 import uuid from 'uuid';
 
-// milliseconds to human time
-export const renderElapsedString = (elapsed, runningSince) => {
-  let totalElapsed = elapsed;
-  if (runningSince) {
-    totalElapsed += Date.now() - runningSince;
+module.exports = {
+  helpers: {
+    // render total time
+    renderElapsedString: (elapsed, runningSince) => {
+      let totalElapsed = elapsed;
+      if (runningSince) {
+        totalElapsed += Date.now() - runningSince;
+      }
+
+      return millisecondsToHuman(totalElapsed);
+    },
+    // create new timer
+    newTimer: (attrs = {}) => {
+      const timer = {
+        title: attrs.title || 'Timer',
+        project: attrs.project || 'Project',
+        id: uuid.v4(),
+        elapsed: 0
+      };
+
+      return timer;
+    }
   }
-
-  return millisecondsToHuman(totalElapsed);
 };
-
+// "milliseconds to seconds"
 const millisecondsToHuman = ms => {
   const seconds = Math.floor((ms / 1000) % 60);
   const minutes = Math.floor((ms / 1000 / 60) % 60);
@@ -30,16 +45,4 @@ const pad = (numberString, size) => {
     padded = `0${padded}`;
   }
   return padded;
-};
-
-// create new timer
-export const newTimer = (attrs = {}) => {
-  const timer = {
-    title: attrs.title || 'Timer',
-    project: attrs.project || 'Project',
-    id: uuid.v4(),
-    elapsed: 0
-  };
-
-  return timer;
 };

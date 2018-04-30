@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { renderElapsedString } from './../helpers';
+import { helpers } from './../helpers';
 
 import TimerActionButton from './TimerActionButton';
 
@@ -35,7 +35,7 @@ export default class Timer extends Component {
       onTimerDelete,
       onEditClick
     } = this.props;
-    const elapsedString = renderElapsedString(elapsed, runningSince);
+    const elapsedString = helpers.renderElapsedString(elapsed, runningSince);
 
     return (
       <div className="card">

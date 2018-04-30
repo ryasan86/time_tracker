@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
-import { newTimer } from './helpers.js';
-import { getTimers } from './client';
+import { client } from './client';
+import { helpers } from './helpers';
 
 import EditableTimerList from './components/EditableTimerList';
 import ToggleableTimerForm from './components/ToggleableTimerForm';
@@ -18,13 +18,17 @@ class App extends Component {
     this.handleDeleteTimer = this.handleDeleteTimer.bind(this);
     this.handleStartClick = this.handleStartClick.bind(this);
     this.handleStopClick = this.handleStopClick.bind(this);
+    this.loadTimersFromServer = this.loadTimersFromServer.bind(this);
   }
 
   componentDidMount() {
-    getTimers(serverTimers => {
-      this.setState({
-        timers: serverTimers
-      })
+    this.loadTimersFromServer();
+    setInterval(this.loadTimersFromServer, 5000);
+  }
+
+  loadTimersFromServer() {
+    client.getTimers(serverTimers => {
+      this.setState({ timers: serverTimers });
     });
   }
 
@@ -41,7 +45,8 @@ class App extends Component {
   }
 
   createTimer(timer) {
-    const t = newTimer(timer);
+    const t = helpers.newTimer(timer);
+    client.createTimer(t)
     this.setState({
       timers: this.state.timers.concat(t)
     });
@@ -63,6 +68,7 @@ class App extends Component {
   }
 
   deleteTimer(delAttr) {
+    client.deleteTimer(delAttr);
     this.setState({
       timers: this.state.timers.filter(t => t.id !== delAttr.id)
     });

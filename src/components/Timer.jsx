@@ -7,7 +7,7 @@ export default class Timer extends Component {
   }
 
   render() {
-    const { title, project, elapsed } = this.props;
+    const { title, project, elapsed, onTimerDelete, onEditClick } = this.props;
     const elapsedString = renderElapsedString(elapsed);
 
     return (
@@ -19,8 +19,8 @@ export default class Timer extends Component {
             <h2>{elapsedString}</h2>
           </div>
           <div className="icon-row">
-            <span>&#128465;</span>
-            <span onClick={this.props.onEditClick}>&#9998;</span>
+            <span onClick={onTimerDelete}>&#128465;</span>
+            <span onClick={onEditClick}>&#9998;</span>
           </div>
         </div>
         <button className="timer-button green">Start</button>

@@ -82,7 +82,7 @@ class App extends Component {
           <EditableTimerList
             timers={this.state.timers}
             onFormSubmit={this.handleUpdateFormSubmit}
-            onTimerDelete={this.deleteTimer}
+            onTimerDelete={this.handleDeleteTimer}
           />
           <ToggleableTimerForm
             isOpen={true}

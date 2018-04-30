@@ -8,16 +8,24 @@ export default class EditableTimer extends Component {
     this.state = { editFormOpen: false };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEditClick = this.handleEditClick.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.onFormClose = this.onFormClose.bind(this);
   }
 
   handleSubmit(timer) {
+    console.log(timer);
     this.props.onFormSubmit(timer);
     this.closeForm();
   }
 
   handleEditClick() {
     this.openForm();
+  }
+
+  handleDeleteClick() {
+    this.props.onTimerDelete({
+      id: this.props.id
+    });
   }
 
   onFormClose() {
@@ -54,6 +62,7 @@ export default class EditableTimer extends Component {
           elapsed={elapsed}
           runningSince={runningSince}
           onEditClick={this.handleEditClick}
+          onTimerDelete={this.handleDeleteClick}
         />
       );
     }

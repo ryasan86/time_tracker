@@ -46,10 +46,10 @@ class App extends Component {
 
   createTimer(timer) {
     const t = helpers.newTimer(timer);
-    client.createTimer(t)
     this.setState({
       timers: this.state.timers.concat(t)
     });
+    client.createTimer(t);
   }
 
   updateTimer(attr) {
@@ -65,13 +65,14 @@ class App extends Component {
         }
       })
     });
+    client.updateTimer(attr);
   }
 
   deleteTimer(delAttr) {
-    client.deleteTimer(delAttr);
     this.setState({
       timers: this.state.timers.filter(t => t.id !== delAttr.id)
     });
+    client.deleteTimer(delAttr);
   }
 
   handleStartClick(timerId) {
@@ -84,7 +85,6 @@ class App extends Component {
 
   startTimer(timerId) {
     const now = Date.now();
-
     this.setState({
       timers: this.state.timers.map(timer => {
         if (timer.id === timerId) {
@@ -96,11 +96,11 @@ class App extends Component {
         }
       })
     });
+    client.startTimer({ id: timerId, start: now });
   }
 
   stopTimer(timerId) {
     const now = Date.now();
-
     this.setState({
       timers: this.state.timers.map(timer => {
         if (timer.id === timerId) {
@@ -114,6 +114,7 @@ class App extends Component {
         }
       })
     });
+    client.stopTimer({ id: timerId, stop: now });
   }
 
   render() {

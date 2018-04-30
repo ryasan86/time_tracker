@@ -19,6 +19,36 @@ module.exports = {
         }
       }).then(checkStatus);
     },
+    updateTimer: data => {
+      fetch('/api/timers', {
+        method: 'put',
+        body: JSON.stringify(data),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }).then(checkStatus);
+    },
+    startTimer: data => {
+      fetch('/api/timers/start', {
+        method: 'post',
+        body: JSON.stringify(data),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }).then(checkStatus);
+    },
+    stopTimer: data => {
+      fetch('/api/timers/stop', {
+        method: 'post',
+        body: JSON.stringify(data),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }).then(checkStatus);
+    },
     deleteTimer: data => {
       fetch('/api/timers', {
         method: 'delete',

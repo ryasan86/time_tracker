@@ -6,9 +6,17 @@ export default class Timer extends Component {
     super();
   }
 
+  componentDidMount() {
+    this.forceUpdateInterval = setInterval(() => this.forceUpdate(), 50);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.forceUpdateInterval);
+  }
+
   render() {
-    const { title, project, elapsed, onTimerDelete, onEditClick } = this.props;
-    const elapsedString = renderElapsedString(elapsed);
+    const { title, project, elapsed, runningSince,onTimerDelete, onEditClick } = this.props;
+    const elapsedString = renderElapsedString(elapsed, runningSince);
 
     return (
       <div className="card">

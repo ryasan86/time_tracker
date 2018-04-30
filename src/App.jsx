@@ -22,7 +22,7 @@ class App extends Component {
           project: 'Learning to Cook',
           id: uuid.v4(),
           elapsed: 1273998,
-          runningSince: null
+          runningSince: Date.now()
         }
       ]
     };
@@ -52,27 +52,42 @@ class App extends Component {
   }
 
   updateTimer(attr) {
-    const { timers } = this.state;
-    const timerToEdit = this.findTimer(attr);
-    const index = timers.indexOf(timerToEdit);
-    timers[index].title = attr.title;
-    timers[index].project = attr.project;
-    this.setState({ timers: timers });
+    this.setState({
+      timers: this.state.timers.map(timer => {
+        if (timer.id === attr.id) {
+          return Object.assign({}, timer, {
+            title: attr.title,
+            project: attr.project
+          });
+        } else {
+          return timer;
+        }
+      })
+    });
+
+    // const { timers } = this.state;
+    // const timerToEdit = this.findTimer(attr);
+    // const index = timers.indexOf(timerToEdit);
+    // timers[index].title = attr.title;
+    // timers[index].project = attr.project;
+    // this.setState({ timers: timers });
   }
 
   deleteTimer(delAttr) {
-    const { timers } = this.state;
-    const timerToDelete = this.findTimer(delAttr);
-    const index = timers.indexOf(timerToDelete);
-    timers.splice(index, 1);
-    this.setState({ timers: timers });
+    this.setState({
+      timers: this.state.timers.filter(t => t.id !== delAttr.id)
+    });
+
+    // const { timers } = this.state;
+    // const timerToDelete = this.findTimer(delAttr);
+    // const index = timers.indexOf(timerToDelete);
+    // timers.splice(index, 1);
+    // this.setState({ timers: timers });
   }
 
-  findTimer(timer) {
-    return this.state.timers.find(t => {
-      return t.id === timer.id;
-    });
-  }
+  // findTimer(timer) {
+  //   return this.state.timers.find(t => t.id === timer.id);
+  // }
 
   render() {
     return (

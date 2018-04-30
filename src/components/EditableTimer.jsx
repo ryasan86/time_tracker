@@ -13,7 +13,6 @@ export default class EditableTimer extends Component {
   }
 
   handleSubmit(timer) {
-    console.log(timer);
     this.props.onFormSubmit(timer);
     this.closeForm();
   }
